@@ -27,8 +27,6 @@ GOLD_FACT    = f"{SCHEMA_GOLD}.fact_sales"
 SILVER_MERGE_KEY  = "target.order_id = source.order_id"
 FACT_MERGE_KEY    = "target.order_id = source.order_id"
 
-# ---------------- Partition Column ----------------
-BRONZE_PARTITION_COL = "order_date"
 
 # ---------------- Watermark Column ----------------
 # Used to filter new records from Raw during incremental loads.
