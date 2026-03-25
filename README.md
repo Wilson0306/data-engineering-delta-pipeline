@@ -65,9 +65,16 @@ This project implements a production-style data pipeline using Databricks and De
 
 ## 📷 Screenshots
 
+##Bronze
 <img width="921" height="309" alt="Bronze" src="https://github.com/user-attachments/assets/6b9ec576-9a0a-4471-b5a5-ec449d2a5ad1" />
+
+## Silver
 <img width="918" height="290" alt="Silver" src="https://github.com/user-attachments/assets/a70134ad-bb24-4fcd-9fd7-871504d3f468" />
+
+## Gold-Dim
 <img width="411" height="154" alt="gold_dim" src="https://github.com/user-attachments/assets/9849fc53-e538-409a-a1d8-626b9cdc6517" />
+
+## Gold-Fact
 <img width="893" height="273" alt="Gold_fact" src="https://github.com/user-attachments/assets/72ab92d9-d908-4ca2-8e07-73e73af69006" />
 
 
