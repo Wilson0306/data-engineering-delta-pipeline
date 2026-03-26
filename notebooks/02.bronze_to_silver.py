@@ -33,6 +33,25 @@ df = df.withColumn("row_num", row_number().over(window)) \
        .drop("row_num")
 
 # COMMAND ----------
+ 
+# quarantine bad records
+quarantine = df.filter(
+    col("order_id").isNull() |
+    col("price").isNull() |
+    (col("price") < 0)
+)
+ 
+if quarantine.count() > 0:
+    quarantine.write.format("delta").mode("append").saveAsTable(QUARANTINE_TABLE)
+ 
+# only clean records proceed
+df = df.filter(
+    col("order_id").isNotNull() &
+    col("price").isNotNull() &
+    (col("price") >= 0)
+)
+
+# COMMAND ----------
 
 if load_type == "incremental":
     if not spark.catalog.tableExists(SILVER_TABLE):
