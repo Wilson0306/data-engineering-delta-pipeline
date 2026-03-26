@@ -22,6 +22,7 @@ BRONZE_TABLE = f"{SCHEMA_BRONZE}.sales"
 SILVER_TABLE = f"{SCHEMA_SILVER}.sales"
 GOLD_DIM     = f"{SCHEMA_GOLD}.dim_product"
 GOLD_FACT    = f"{SCHEMA_GOLD}.fact_sales"
+QUARANTINE_TABLE = f"{CATALOG}.quarantine.sales"
 
 # ---------------- Merge Keys ----------------
 SILVER_MERGE_KEY  = "target.order_id = source.order_id"
@@ -43,3 +44,4 @@ print(f"  BRONZE -> {BRONZE_TABLE}")
 print(f"  SILVER -> {SILVER_TABLE}")
 print(f"  DIM    -> {GOLD_DIM}")
 print(f"  FACT   -> {GOLD_FACT}")
+print(f"  QUARANTINE -> {QUARANTINE_TABLE}")
