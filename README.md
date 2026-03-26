@@ -73,7 +73,7 @@ data-engineering-delta-pipeline/
 Run once in Databricks SQL editor:
 
 ```sql
-CREATE CATALOG IF NOT EXISTS wilson;
+CREATE CATALOG IF NOT EXISTS wilson;  #Note:"Replace wilson with your own catalog name"
 CREATE SCHEMA IF NOT EXISTS wilson.raw;
 CREATE SCHEMA IF NOT EXISTS wilson.bronze;
 CREATE SCHEMA IF NOT EXISTS wilson.silver;
