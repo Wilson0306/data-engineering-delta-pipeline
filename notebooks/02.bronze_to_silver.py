@@ -1,4 +1,8 @@
 # Databricks notebook source
+%run ./00.config
+
+# COMMAND ----------
+
 dbutils.widgets.text("load_type", "")
 load_type = dbutils.widgets.get("load_type")
 
@@ -11,7 +15,7 @@ from delta.tables import DeltaTable
 
 # COMMAND ----------
 
-df = spark.table("wilson.bronze.sales")
+df = spark.table(BRONZE_TABLE)
 
 # COMMAND ----------
 
@@ -31,18 +35,17 @@ df = df.withColumn("row_num", row_number().over(window)) \
 # COMMAND ----------
 
 if load_type == "incremental":
-    if not spark.catalog.tableExists("wilson.silver.sales"):
-        df.write.format("delta").saveAsTable("wilson.silver.sales")
+    if not spark.catalog.tableExists(SILVER_TABLE):
+        df.write.format("delta").saveAsTable(SILVER_TABLE)
     else:
-        delta_table = DeltaTable.forName(spark, "wilson.silver.sales")
+        delta_table = DeltaTable.forName(spark, SILVER_TABLE)
 
         delta_table.alias("target").merge(
             df.alias("source"),
-            "target.order_id = source.order_id"
+            SILVER_MERGE_KEY
         ).whenMatchedUpdateAll() \
          .whenNotMatchedInsertAll() \
          .execute()
-    
 
 else:
-    df.write.format("delta").mode("overwrite").saveAsTable("wilson.silver.sales")
+    df.write.format("delta").mode("overwrite").saveAsTable(SILVER_TABLE)
